@@ -1,0 +1,68 @@
+﻿@model IEnumerable<PizzaApp.Models.Entities.Food>
+@{
+    ViewData["Title"] = "Index";
+    ViewData["HideHeaderFooter"] = true;
+}
+<form style="margin-top: 20px; margin-bottom: 20px;" class="input-group" method="get" class="form-outline" data-mdb-input-init asp-controller="Food" asp-action="Search">
+    <input name="foodname" type="search" id="foodname" class="form-control" />
+    <label class="form-label" for="form1"></label>
+    <button style="background-color: #8C1818;" type="submit" class="btn btn-primary" data-mdb-ripple-init>
+        <i class="fas fa-search"></i>
+    </button>
+</form>
+@if (User.IsInRole("admin"))
+{
+    <p>
+        <a class="btn btn-primary" style="background-color: #8C1818" asp-action="Create">Create New</a>
+    </p>
+}
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @if (Model.Count() < 1)
+    {
+        <h5>Not found</h5>
+    }
+    @foreach (var food in Model)
+    {
+        <div class="card">
+            <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
+                <img src="data:image/jpeg;base64,@Convert.ToBase64String(food.ImageData)" class="img-fluid" />
+                <a asp-controller="Food" asp-action="Details" asp-route-id="@food.Id">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@food.Name</h5>
+                <p class="card-text">@food.Price PLN</p>
+                @if (User.IsInRole("admin"))
+                {
+                    <a asp-controller="Food" asp-action="Details" asp-route-id="@food.Id" class="btn btn-primary" style="background-color: #BF6517" data-mdb-ripple-init>Details</a>
+                    <a asp-action="Edit" asp-route-id="@food.Id" class="btn btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@food.Id" class="btn btn-primary" style="background-color: #8C1818">Delete</a>
+                }
+                else
+                {
+                    <a asp-controller="Food" asp-action="Details" asp-route-id="@food.Id" class="btn btn-primary" style="background-color: #BF6517" data-mdb-ripple-init>Details</a>
+                    <a asp-controller="cart" asp-action="buy" asp-route-id="@food.Id" class="btn btn-primary" style="background-color: #8C1818" data-mdb-ripple-init>Add to card</a>                    
+                }
+            </div>
+        </div>
+    }
+</div>
+<nav aria-label="...">
+    <ul class="pagination">
+        <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { page = 1, pageSize = ViewBag.PageSize })">Previous</a>
+        </li>
+
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = i, pageSize = ViewBag.PageSize })">@i <span class="visually-hidden">(current)</span></a>
+            </li>
+        }
+
+        <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1, pageSize = ViewBag.PageSize })">Next</a>
+        </li>
+    </ul>
+</nav>

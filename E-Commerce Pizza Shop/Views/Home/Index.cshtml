@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<div id="intro-example"
+     class="p-5 text-center bg-image"
+     style="background-image: url(/images/slide1.jpg);">
+    <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);">
+        <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-white">
+                <h1 class="mb-3">Best Pizza in Poland</h1>
+                <h5 class="mb-4">Make your first order and get <strong style="font-size: 25px;">25%</strong> discount</h5>
+                <a data-mdb-ripple-init
+                   class="btn btn-outline-light btn-lg m-2"
+                   asp-action="Index"
+                   asp-controller="Food"
+                   role="button"
+                   rel="nofollow">Make an order</a>
+                <a data-mdb-ripple-init
+                   class="btn btn-outline-light btn-lg m-2"
+                   href="#bestSellings"
+                   role="button">See our best menu</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<h1 id="bestSellings" style="text-align: center; margin-top: 5%;">Our best sellings</h1>
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top: 5%">
+    <div class="col">
+        <div class="card h-100">
+            <img src="~/images/pizza_supreme.jpg" class="card-img-top" alt="Skyscrapers" />
+            <div class="card-body">
+                <h5 class="card-title">Supreme Sensation: A Flavor Extravaganza!</h5>
+                <p class="card-text">
+                    Indulge in our Supreme Pizza, a culinary masterpiece loaded with savory Italian sausage, crispy bacon, fresh green peppers, ripe tomatoes, onions, and black olives, all perfectly melded with gooey mozzarella cheese on our signature hand-tossed crust. Each bite bursts with a symphony of flavors that will leave you craving for more. Treat yourself to the ultimate pizza experience with our Supreme Sensation!
+                </p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">See all menu</small>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <img src="~/images/neapolitan.jpg" class="card-img-top" alt="Los Angeles Skyscrapers" />
+            <div class="card-body">
+                <h5 class="card-title">Margherita Magic: Simplicity Perfected!</h5>
+                <p class="card-text">Savor the classic taste of Italy with our Margherita Pizza. Crafted with vine-ripened tomatoes, fragrant basil leaves, and creamy mozzarella cheese, all delicately drizzled with extra virgin olive oil on a thin, crispy crust. Experience the essence of traditional Italian cuisine in every bite. With its simple yet divine flavors, Margherita Magic is the perfect choice for those who appreciate the beauty of simplicity.</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">See all menu</small>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <img src="images/bbq_pizza.png" class="card-img-top" alt="Palm Springs Road" />
+            <div class="card-body">
+                <h5 class="card-title">BBQ Bliss: A Tangy Twist on Tradition!</h5>
+                <p class="card-text">
+                    Embark on a flavor adventure with our BBQ Chicken Pizza. Tender pieces of grilled chicken breast marinated in smoky barbecue sauce, paired with crisp red onions, tangy barbecue drizzle, and a blend of cheddar and mozzarella cheeses, all atop our artisanal hand-stretched crust. Each bite is a harmonious fusion of sweet and savory, guaranteed to tantalize your taste buds. Indulge in BBQ Bliss and experience pizza perfection with every slice!
+                </p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">See all menu</small>
+            </div>
+        </div>
+    </div>
+</div>

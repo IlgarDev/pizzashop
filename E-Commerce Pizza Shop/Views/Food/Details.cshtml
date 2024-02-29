@@ -1,0 +1,25 @@
+﻿@model PizzaApp.Models.Entities.Food
+
+@{
+    ViewData["Title"] = "Details";
+    ViewData["HideHeaderFooter"] = true;
+}
+
+<h2>Details</h2>
+
+<div>
+    <div class="card mb-3">
+        <img class="card-img" alt="@Model.Name" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ImageData)" />
+        <div class="card-body">
+            <h5 class="card-title">@Html.DisplayFor(model => model.Name)</h5>
+            <p class="card-text">
+                @Html.DisplayFor(model => model.Description)
+            </p>
+        </div>
+    </div>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a><text> | </text>
+    }
+    <a asp-action="Index">Back to List</a>
+</div>

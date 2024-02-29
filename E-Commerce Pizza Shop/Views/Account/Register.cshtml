@@ -1,0 +1,74 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+    ViewData["HideHeaderFooter"] = true;
+}
+
+<section>
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+        <div class="row gx-lg-5 align-items-center mb-5">
+            <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+                <h1 class="my-5 display-5 fw-bold ls-tight" style="color: black">
+                    Best pizza <br />
+                    <span style="color: hsl(0, 71%, 32%)">for you just for 10$</span>
+                </h1>
+                <p class="mb-4 opacity-70" style="color: black">
+                    Sign up to order the best pizza in Warsaw
+                </p>
+            </div>
+
+            <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+                <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+                <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+
+                <div class="card bg-glass">
+                    <div class="card-body px-4 py-5 px-md-5">
+                        <form method="post" asp-controller="Account" asp-action="Register">
+                            <div asp-validation-summary="All">
+                                <div class="form-outline mb-4">
+                                    <input asp-for="UserName" type="username" id="form3Example3" class="form-control" />
+                                    <label class="form-label" for="form3Example3">UserName</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input asp-for="Email" type="username" id="form3Example3" class="form-control" />
+                                    <label class="form-label" for="form3Example3">Email</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input asp-for="FirstName" type="username" id="form3Example3" class="form-control" />
+                                    <label class="form-label" for="form3Example3">FirstName</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input asp-for="LastName" type="username" id="form3Example3" class="form-control" />
+                                    <label class="form-label" for="form3Example3">LastName</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input asp-for="Address" type="username" id="form3Example3" class="form-control" />
+                                    <label class="form-label" for="form3Example3">Address</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input asp-for="PostCode" type="text" class="form-control" />
+                                    <label class="form-label" for="form3Example3">PostCode</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input asp-for="Password" type="password" id="form3Example4" class="form-control" />
+                                    <label class="form-label" for="form3Example4">Password</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input asp-for="ConfirmPassword" type="password" id="form3Example4" class="form-control" />
+                                    <label class="form-label" for="form3Example4">Confirm Password</label>
+                                </div>
+                                <button style="background-color: #8C1818" type="submit" class="btn btn-primary btn-block mb-4">
+                                    Sign up
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

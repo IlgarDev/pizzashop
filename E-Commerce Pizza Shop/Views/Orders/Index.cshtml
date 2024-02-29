@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PizzaApp.Models.Entities.Order>
+@inject UserManager<ApplicationUser> userManager
+@{
+    ViewData["Title"] = "Index";
+    ViewData["HideHeaderFooter"] = true;
+}
+
+
+<div class="row" style="margin-top: 20px;">
+    @foreach (var item in Model)
+    {
+        if (User.IsInRole("admin"))
+        {
+            if (!item.isReady)
+            {
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Order id: @item.Id</h5>
+                            <p class="card-text">Buyer's data: @item.BuyerName</p>
+                            <div class="card-text">
+                                <p>Buyer's orders:</p>
+                                @foreach (var order in item.Foods)
+                                {
+                                    <p>Order name: @order.FoodName</p>
+                                    <p>Order quantity: @order.Quantity</p>
+                                }
+                            </div>
+                            <a asp-controller="Orders" asp-action="Update" asp-route-orderId="@item.Id" class="btn btn-primary" data-mdb-ripple-init>Set order status as ready</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            if (item.BuyerId == userManager.GetUserId(User))
+            {
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Order id: @item.Id</h5>
+                            <div class="card-text">
+                                <p>Your orders:</p>
+                                @foreach (var order in item.Foods)
+                                {
+                                    <p>Order name: @order.FoodName</p>
+                                    <p>Order quantity: @order.Quantity</p>
+                                }
+                                @if (item.isReady)
+                                {
+                                    <p>Order status: Ready</p>
+                                }
+                                else
+                                {
+                                    <p>Order status: Not Ready</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
+</div>

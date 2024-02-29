@@ -1,0 +1,56 @@
+@using System.Collections.Generic
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Authentication
+@model LoginViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<section>
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+        <div class="row gx-lg-5 align-items-center mb-5">
+            <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+                <h1 class="my-5 display-5 fw-bold ls-tight" style="color: black">
+                    Best pizza <br />
+                    <span style="color: hsl(0, 71%, 32%)">for you just for 10$</span>
+                </h1>
+                <p class="mb-4 opacity-70" style="color: black">
+                    Login to order our best pizza in Poland
+                </p>
+            </div>
+
+            <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+                <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+                <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+
+                <div class="card bg-glass">
+                    <div class="card-body px-4 py-5 px-md-5">
+                        <form method="post" asp-controller="account" asp-action="login">
+                            <div asp-validation-summary="All">
+                                <div class="form-outline mb-4">
+                                    <input asp-for="UserName" type="username" id="form3Example3" class="form-control" />
+                                    <label class="form-label" for="form3Example3">Username</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input asp-for="Password" type="password" id="form3Example4" class="form-control" />
+                                    <label class="form-label" for="form3Example4">Password</label>
+                                </div>
+                                <div class="form-check d-flex justify-content-center mb-4">
+                                    <input asp-for="RememberMe" class="form-check-input me-2" type="checkbox" accept="" id="form2Example33" checked />
+                                    <label class="form-check-label" for="form2Example33">
+                                        Remember password
+                                    </label>
+                                </div>
+                                <button style="background-color: #8C1818" type="submit" class="btn btn-primary btn-block mb-4">
+                                    Sign in
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

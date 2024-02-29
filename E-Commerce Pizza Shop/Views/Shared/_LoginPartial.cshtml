@@ -1,0 +1,59 @@
+@using Microsoft.AspNetCore.Identity
+@using PizzaApp.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+@if (!SignInManager.IsSignedIn(User))
+{
+    <div class="d-flex align-items-center">
+        <a style="background-color: #8C1818; color: white;" asp-action="Login" asp-controller="Account" data-mdb-ripple-init type="button" class="btn btn-link px-3 me-2">
+            Login
+        </a>
+        <a style="background-color: #BF6517; color: white;" asp-action="Register" asp-controller="Account" data-mdb-ripple-init type="button" class="btn btn-primary me-3">
+            Sign up for free
+        </a>
+        <a data-mdb-ripple-init
+           class="btn btn-dark px-3"
+           href="https://www.youtube.com/embed/QdFQF9otqJ0"
+           role="button">
+            <i class="fab fa-youtube"></i>
+        </a>
+    </div>
+}
+else
+{
+    <div class="d-flex align-items-center">
+        <a style="background-color: #8C1818; color: white;" data-mdb-ripple-init class="btn btn-link px-3 me-2">
+            Balance: @UserManager.GetUserAsync(User).Result.Balance PLN
+        </a>
+        <a class="text-reset me-3" asp-controller="Cart" asp-action="Index">
+            <i class="fas fa-shopping-cart"></i>
+        </a>
+        <div class="dropdown">
+            <a data-mdb-dropdown-init
+               class="dropdown-toggle d-flex align-items-center hidden-arrow"
+               href="#"
+               id="navbarDropdownMenuAvatar"
+               role="button"
+               aria-expanded="false">
+                <img src="../../images/profile_pic.png"
+                     class="rounded-circle"
+                     height="25"
+                     loading="lazy" />
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="navbarDropdownMenuAvatar">
+                <li>
+                    <a class="dropdown-item" asp-controller="Manage" asp-action="Index">My profile</a>
+                </li>
+                <li>
+                    <form asp-controller="Account" asp-action="LogOff" method="post">
+                        <input type="submit" class="dropdown-item" value="Logout" />
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+}

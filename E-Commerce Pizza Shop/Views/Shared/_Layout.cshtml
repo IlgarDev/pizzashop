@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ilgar Mammadov Pizza Diploma Work</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+    <link rel="stylesheet" href="~/css/auth.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/mdb5-free-standard//css/mdb.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/styles.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+            <div class="container">
+                <a class="navbar-brand me-2" asp-controller="Home" asp-action="Index">
+                    <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+                         height="16"
+                         alt="MDB Logo"
+                         loading="lazy"
+                         style="margin-top: -1px;" />
+                </a>
+                <button data-mdb-collapse-init
+                        class="navbar-toggler"
+                        type="button"
+                        data-mdb-target="#navbarButtonsExample"
+                        aria-controls="navbarButtonsExample"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarButtonsExample">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Food" asp-action="Index">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Orders" asp-action="Index">Orders</a>
+                        </li>
+                    </ul>
+                    @await Html.PartialAsync("_LoginPartial")
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    @if (!ViewData.ContainsKey("HideHeaderFooter") || !(bool)ViewData["HideHeaderFooter"])
+    {
+        <hr />
+        <footer class="text-center text-white" style="background-color: gray;">
+            <div class="container p-4">
+                <section class="">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="ratio ratio-16x9">
+                                <iframe class="shadow-1-strong rounded"
+                                        src="https://www.youtube.com/embed/QdFQF9otqJ0"
+                                        title="YouTube video"
+                                        allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2024 Copyright:
+                <a class="text-white">Ilgar Mammadov Diploma UEHS</a>
+            </div>
+        </footer>
+    }
+    <script src="~/mdb5-free-standard/js/mdb.umd.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
